@@ -216,24 +216,27 @@ function secuenciaAtaque(){
                 console.log(ataqueJugador)
                 boton.style.background = "#112f58"
                 botonFuego.disabled = true
-                
+               
             }
              else if(e.target.textContent === "💧"){
                 ataqueJugador.push("Agua")
                 console.log(ataqueJugador)
                 boton.style.background = "#112f58"   
                 botonAgua.disabled = true 
+               
             }
             else{
                 ataqueJugador.push("Tierra")
                 console.log(ataqueJugador)
                 boton.style.background = "#112f58"
                 botonTierra.disabled = true 
+                
             }
             ataqueEnemigoAleatorio()
-        })
-    })
-    
+           
+        }) 
+    }) 
+   
 }
 
 function seleccionRival() {
@@ -257,11 +260,15 @@ function seleccionRival() {
     }
     else{ataqueEnemigo.push("Tierra")}
     console.log(ataqueEnemigo)
-   iniciarPelea()
+    finalizarPelea()
+   
+   
 }
-function iniciarPelea(){
+function finalizarPelea(){
     if(ataqueJugador.length === 5){
-        combate()
+        combate() 
+       revisarVidas()
+
     }
 }
 function indexAmbosOponenetes(jugador, enemigo){
@@ -285,6 +292,7 @@ function combate(){
             crearMensaje("Ganaste😁")
             victoriasJugador++
             spanTusVidas.innerHTML = victoriasJugador
+            
         }
         else if(ataqueJugador[index] == "Tierra" && ataqueEnemigo[index] == "Agua"){
             indexAmbosOponenetes(index,index)
@@ -297,9 +305,11 @@ function combate(){
             crearMensaje("Perdiste😭")
         victoriasEnemigo++
         spanVidasRival.innerHTML = victoriasEnemigo}
+        
     }
     
-    revisarVidas()
+    
+    
 }
 
 function revisarVidas(){
@@ -317,8 +327,7 @@ function revisarVidas(){
 function crearMensaje(resultado)
 {
 let parrafo=document.createElement('p')
-parrafo.innerHTML= tuWaifu +" atacó con "+indexAtaqueJugador+" ," +
-misWaifus[aleatorioRival].nombre +" atacó con "+indexAtaqueEnemigo +", " +  resultado
+parrafo.innerHTML= `Tu waifu ${tuWaifu} atacó con ${indexAtaqueJugador} y tu rival ${misWaifus[aleatorioRival].nombre} atacó con ${indexAtaqueEnemigo}, ${resultado}`
 sectionMensajes.appendChild(parrafo)}
 
 function crearMensajeFinal(resultadoFinal){
